@@ -1,4 +1,4 @@
-﻿namespace MonkeyFinder;
+namespace MonkeyFinder;
 
 public partial class App : Application
 {

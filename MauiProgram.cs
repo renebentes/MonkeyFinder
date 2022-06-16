@@ -1,5 +1,3 @@
-using MonkeyFinder.Pages;
-
 namespace MonkeyFinder;
 
 public static class MauiProgram
@@ -18,8 +16,10 @@ public static class MauiProgram
         builder.Services.AddSingleton<MonkeyService>();
 
         builder.Services.AddSingleton<MainViewModel>();
+        builder.Services.AddTransient<MonkeyDetailsViewModel>();
 
         builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddTransient<MonkeyDetailsPage>();
 
         return builder.Build();
     }

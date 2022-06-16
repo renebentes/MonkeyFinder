@@ -15,12 +15,12 @@ public class MonkeyService
 
     public async Task<IEnumerable<Monkey>> GetMonkeys()
     {
-        if (_monkeys is not null)
+        if (_monkeys?.Count() > 0)
         {
             return _monkeys.AsEnumerable();
         }
 
-        const string url = "https://montemagno.com/monkey.json";
+        const string url = "https://montemagno.com/monkeys.json";
         var response = await _httpClient.GetAsync(url);
 
         if (response.IsSuccessStatusCode)

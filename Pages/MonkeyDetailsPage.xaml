@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MonkeyFinder.Pages.MonkeyDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MonkeyFinder.ViewModels"
+    Title="{Binding Monkey.Name}"
+    x:DataType="viewModels:MonkeyDetailsViewModel">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid
+                ColumnDefinitions="*,Auto,*"
+                RowDefinitions="160, *">
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    BackgroundColor="{StaticResource Primary}"
+                    HorizontalOptions="FillAndExpand" />
+                <Frame
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Margin="0,80,0,0"
+                    Padding="0"
+                    CornerRadius="80"
+                    HasShadow="False"
+                    HeightRequest="160"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    WidthRequest="160">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="160"
+                        HorizontalOptions="Center"
+                        Source="{Binding Monkey.Image}"
+                        VerticalOptions="Center"
+                        WidthRequest="160" />
+                </Frame>
+            </Grid>
+            <VerticalStackLayout
+                Padding="10"
+                Spacing="10">
+                <Label
+                    Style="{StaticResource MediumLabel}"
+                    Text="{Binding Monkey.Details}" />
+                <Label
+                    Style="{StaticResource SmallLabel}"
+                    Text="{Binding Monkey.Location, StringFormat=Location: {0}}" />
+                <Label
+                    Style="{StaticResource SmallLabel}"
+                    Text="{Binding Monkey.Population, StringFormat=Population: {0}}" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

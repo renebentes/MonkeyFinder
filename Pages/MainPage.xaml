@@ -3,44 +3,63 @@
     x:Class="MonkeyFinder.Pages.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:MonkeyFinder.Models">
-    <CollectionView>
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type models:Monkey}">
-                <models:Monkey
-                    Name="Baboon"
-                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg"
-                    Location="Africa and Asia" />
-                <models:Monkey
-                    Name="Capuchin Monkey"
-                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/capuchin.jpg"
-                    Location="Central and South America" />
-                <models:Monkey
-                    Name="Red-shanked douc"
-                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
-                    Location="Vietnam" />
-            </x:Array>
-        </CollectionView.ItemsSource>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Monkey">
-                <HorizontalStackLayout Padding="10">
-                    <Image
-                        Aspect="AspectFill"
-                        HeightRequest="100"
-                        Source="{Binding Image}"
-                        WidthRequest="100" />
-                    <Label
-                        Margin="10,0,0,0"
-                        VerticalOptions="Center">
-                        <Label.Text>
-                            <MultiBinding StringFormat="{}{0} | {1}">
-                                <Binding Path="Name" />
-                                <Binding Path="Location" />
-                            </MultiBinding>
-                        </Label.Text>
-                    </Label>
-                </HorizontalStackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    xmlns:models="clr-namespace:MonkeyFinder.Models"
+    xmlns:viewModels="clr-namespace:MonkeyFinder.ViewModels"
+    x:DataType="viewModels:MainViewModel">
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto">
+        <CollectionView
+            Grid.ColumnSpan="2"
+            ItemsSource="{Binding Monkeys}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Monkey">
+                    <Frame
+                        Margin="10"
+                        HeightRequest="125"
+                        HorizontalOptions="StartAndExpand"
+                        Style="{StaticResource CardView}">
+                        <Grid
+                            Padding="0"
+                            ColumnDefinitions="125,*">
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="125"
+                                Source="{Binding Image}"
+                                WidthRequest="125" />
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                Padding="10"
+                                VerticalOptions="Center">
+                                <Label
+                                    Style="{StaticResource LargeLabel}"
+                                    Text="{Binding Name}" />
+                                <Label
+                                    Style="{StaticResource MediumLabel}"
+                                    Text="{Binding Location}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Grid.Row="1"
+            Margin="8"
+            Command="{Binding GetMonkeysCommand}"
+            IsEnabled="{Binding IsNotBusy}"
+            Style="{StaticResource ButtonOutline}"
+            Text="Get Monkeys" />
+
+        <ActivityIndicator
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="FillAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand" />
+    </Grid>
 </ContentPage>

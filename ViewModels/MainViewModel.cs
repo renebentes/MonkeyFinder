@@ -13,7 +13,7 @@ public partial class MainViewModel : BaseViewModel
     public ObservableCollection<Monkey> Monkeys { get; } = new();
 
     [RelayCommand]
-    public async Task GetMonkeysAsync()
+    private async Task GetMonkeysAsync()
     {
         if (IsBusy)
         {

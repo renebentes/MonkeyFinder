@@ -2,12 +2,14 @@ namespace MonkeyFinder.ViewModels;
 
 public partial class MainViewModel : BaseViewModel
 {
+    private readonly IConnectivity _connectivity;
     private readonly MonkeyService _monkeyService;
 
-    public MainViewModel(MonkeyService monkeyService)
+    public MainViewModel(MonkeyService monkeyService, IConnectivity connectivity)
     {
         Title = "Monkey Finder";
         _monkeyService = monkeyService;
+        _connectivity = connectivity;
     }
 
     public ObservableCollection<Monkey> Monkeys { get; } = new();
@@ -22,6 +24,12 @@ public partial class MainViewModel : BaseViewModel
 
         try
         {
+            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await Shell.Current.DisplayAlert("No connectivity!", "Please check internet and try again!", "Ok");
+                return;
+            }
+
             IsBusy = true;
 
             if (Monkeys.Count != 0)

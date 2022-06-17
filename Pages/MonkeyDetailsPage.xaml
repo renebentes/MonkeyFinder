@@ -15,7 +15,8 @@
                 RowDefinitions="160, *">
                 <BoxView
                     Grid.ColumnSpan="3"
-                    BackgroundColor="{StaticResource Primary}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
+                                                      Dark={StaticResource PrimaryDark}}"
                     HorizontalOptions="FillAndExpand" />
                 <Frame
                     Grid.RowSpan="2"

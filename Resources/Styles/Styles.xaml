@@ -8,7 +8,7 @@
         x:Key="BaseLabel"
         TargetType="Label">
         <Setter Property="FontFamily" Value="OpenSansRegular" />
-        <Setter Property="TextColor" Value="#1F1F1F" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}" />
     </Style>
 
     <Style
@@ -42,13 +42,13 @@
     <Style
         ApplyToDerivedTypes="True"
         TargetType="Page">
-        <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
     </Style>
 
     <Style
         ApplyToDerivedTypes="True"
         TargetType="Shell">
-        <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         <Setter Property="Shell.ForegroundColor" Value="White" />
         <Setter Property="Shell.TitleColor" Value="White" />
         <Setter Property="Shell.DisabledColor" Value="{StaticResource Disabled}" />
@@ -62,13 +62,13 @@
 
     <Style TargetType="NavigationPage">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
-        <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         <Setter Property="BarTextColor" Value="White" />
         <Setter Property="IconColor" Value="{StaticResource Gray}" />
     </Style>
 
     <Style TargetType="TabbedPage">
-        <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         <Setter Property="BarTextColor" Value="White" />
         <Setter Property="UnselectedTabColor" Value="{StaticResource Unselected}" />
         <Setter Property="SelectedTabColor" Value="{StaticResource Gray}" />
@@ -77,9 +77,9 @@
     <Style
         x:Key="ButtonOutline"
         TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource LightBackground}" />
-        <Setter Property="TextColor" Value="{StaticResource Primary}" />
-        <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         <Setter Property="BorderWidth" Value="2" />
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="CornerRadius" Value="20" />
@@ -91,16 +91,16 @@
         <Setter Property="BorderColor" Value="#DDDDDD" />
         <Setter Property="HasShadow" Value="True" />
         <Setter Property="Padding" Value="0" />
-        <Setter Property="Background" Value="{StaticResource LightBackground}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}" />
         <Setter Property="CornerRadius" Value="10" />
         <Setter Property="IsClippedToBounds" Value="True" />
     </Style>
 
     <Style TargetType="ActivityIndicator">
-        <Setter Property="Color" Value="{StaticResource Primary}" />
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
     </Style>
 
     <Style TargetType="RefreshView">
-        <Setter Property="RefreshColor" Value="{StaticResource Primary}" />
+        <Setter Property="RefreshColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
     </Style>
 </ResourceDictionary>

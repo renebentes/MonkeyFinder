@@ -11,6 +11,13 @@
 
     <Color x:Key="LightBackground">#FAF9F8</Color>
     <Color x:Key="DarkBackground">Black</Color>
+
+    <Color x:Key="CardBackground">White</Color>
+    <Color x:Key="CardBackgroundDark">#1C1C1E</Color>
+
+    <Color x:Key="LabelText">#1F1F1F</Color>
+    <Color x:Key="LabelTextDark">White</Color>
+
     <Color x:Key="Disabled">#B4FFFFFF</Color>
     <Color x:Key="Unselected">#95FFFFFF</Color>
 </ResourceDictionary>

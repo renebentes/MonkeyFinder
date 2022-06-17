@@ -84,7 +84,7 @@
             Command="{Binding GetClosestMonkeyCommand}"
             IsEnabled="{Binding IsNotBusy}"
             Style="{StaticResource ButtonOutline}"
-            Text="Get Closest Monkey" />
+            Text="Find Closest" />
 
         <ActivityIndicator
             Grid.RowSpan="2"

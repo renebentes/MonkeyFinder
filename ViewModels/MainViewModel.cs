@@ -6,6 +6,9 @@ public partial class MainViewModel : BaseViewModel
     private readonly MonkeyService _monkeyService;
     private readonly IGeolocation _geolocation;
 
+    [ObservableProperty]
+    private bool _isRefreshing;
+
     public MainViewModel(MonkeyService monkeyService, IConnectivity connectivity, IGeolocation geolocation)
     {
         Title = "Monkey Finder";
@@ -54,6 +57,7 @@ public partial class MainViewModel : BaseViewModel
         finally
         {
             IsBusy = false;
+            IsRefreshing = false;
         }
     }
 

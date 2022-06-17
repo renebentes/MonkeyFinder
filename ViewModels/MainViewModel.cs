@@ -4,12 +4,14 @@ public partial class MainViewModel : BaseViewModel
 {
     private readonly IConnectivity _connectivity;
     private readonly MonkeyService _monkeyService;
+    private readonly IGeolocation _geolocation;
 
-    public MainViewModel(MonkeyService monkeyService, IConnectivity connectivity)
+    public MainViewModel(MonkeyService monkeyService, IConnectivity connectivity, IGeolocation geolocation)
     {
         Title = "Monkey Finder";
         _monkeyService = monkeyService;
         _connectivity = connectivity;
+        _geolocation = geolocation;
     }
 
     public ObservableCollection<Monkey> Monkeys { get; } = new();
@@ -48,6 +50,44 @@ public partial class MainViewModel : BaseViewModel
         {
             Debug.WriteLine(ex);
             await Shell.Current.DisplayAlert("ERROR!", "Unable to get monkeys!", "Ok");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    [RelayCommand]
+    private async Task GetClosestMonkeyAsync()
+    {
+        if (IsBusy || Monkeys.Count == 0)
+        {
+            return;
+        }
+
+        try
+        {
+            var location = await _geolocation.GetLastKnownLocationAsync();
+
+            if (location is null)
+            {
+                location = await _geolocation.GetLocationAsync(new GeolocationRequest
+                {
+                    DesiredAccuracy = GeolocationAccuracy.Medium,
+                    Timeout = TimeSpan.FromSeconds(30)
+                });
+            }
+
+            var closestMonkey = Monkeys
+                .OrderBy(m => location.CalculateDistance(new Location(m.Latitude, m.Longitude), DistanceUnits.Kilometers))
+                .FirstOrDefault();
+
+            await Shell.Current.DisplayAlert("Closest Monkey!", $"{closestMonkey.Name} in {closestMonkey.Location}", "Ok");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex);
+            await Shell.Current.DisplayAlert("ERROR!", "Unable to guery location!", "Ok");
         }
         finally
         {

@@ -3,8 +3,10 @@
     x:Class="MonkeyFinder.Pages.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:models="clr-namespace:MonkeyFinder.Models"
     xmlns:viewModels="clr-namespace:MonkeyFinder.ViewModels"
+    ios:Page.UseSafeArea="True"
     x:DataType="viewModels:MainViewModel">
     <Grid
         ColumnDefinitions="*,*"

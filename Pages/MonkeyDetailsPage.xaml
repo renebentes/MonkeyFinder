@@ -35,6 +35,15 @@
                         WidthRequest="160" />
                 </Frame>
             </Grid>
+
+            <Button
+                Margin="8"
+                Command="{Binding OpenMapCommand}"
+                HorizontalOptions="Center"
+                IsEnabled="{Binding IsNotBusy}"
+                Style="{StaticResource ButtonOutline}"
+                Text="Show on Map" />
+
             <VerticalStackLayout
                 Padding="10"
                 Spacing="10">

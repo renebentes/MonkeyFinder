@@ -16,7 +16,7 @@
 		<ApplicationTitle>MonkeyFinder</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.monkeyfinder</ApplicationId>
+		<ApplicationId>br.com.renebentes.monkeyfinder</ApplicationId>
 		<ApplicationIdGuid>2FA8DA10-D1E6-4CB1-832B-71A29BD57028</ApplicationIdGuid>
 
 		<!-- Versions -->

@@ -91,7 +91,7 @@ public partial class MainViewModel : BaseViewModel
         catch (Exception ex)
         {
             Debug.WriteLine(ex);
-            await Shell.Current.DisplayAlert("ERROR!", "Unable to guery location!", "Ok");
+            await Shell.Current.DisplayAlert("ERROR!", "Unable to query location!", "Ok");
         }
         finally
         {
